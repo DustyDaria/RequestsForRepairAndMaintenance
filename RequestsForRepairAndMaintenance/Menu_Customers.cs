@@ -10,16 +10,17 @@ using System.Windows.Forms;
 
 namespace RequestsForRepairAndMaintenance
 {
-    public partial class Form1 : Form
+    public partial class Menu_Customers : Form
     {
-        Style style = new Style();
-        public Form1()
+        int mainID = 0;
+
+        public Menu_Customers(int ID)
         {
             InitializeComponent();
+            Authorization authorization = new Authorization();
+            authorization.Close();
 
-            Label label_Header = new Label();
-
-            Controls.Add(style.Header("lbl1", "this is header", 3, 3, 12));
+            mainID = ID;
         }
     }
 }

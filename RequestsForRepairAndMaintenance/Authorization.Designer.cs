@@ -1,6 +1,6 @@
 ﻿namespace RequestsForRepairAndMaintenance
 {
-    partial class Form1
+    partial class Authorization
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,10 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Authorization));
+            this.SuspendLayout();
+            // 
+            // Authorization
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(970, 526);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Authorization";
             this.Text = "Form1";
+            this.ResizeEnd += new System.EventHandler(this.Authorization_ResizeEnd);
+            this.SizeChanged += new System.EventHandler(this.Authorization_SizeChanged);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -38,9 +38,9 @@ namespace RequestsForRepairAndMaintenance
             locationY = locationY * partOfScreen_HEIGHT;
 
             
-            name.Text = text;
+            /*name.Text = text;
             name.Location = new System.Drawing.Point(locationX, locationY);
-            name.ForeColor = System.Drawing.Color.DarkGray;
+            name.ForeColor = System.Drawing.Color.DarkGray;*/
 
             
 
