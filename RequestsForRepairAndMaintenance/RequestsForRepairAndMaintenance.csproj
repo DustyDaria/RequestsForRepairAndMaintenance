@@ -77,23 +77,11 @@
     <Compile Include="Authorization.Designer.cs">
       <DependentUpon>Authorization.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu_Administrator.cs">
+    <Compile Include="Menu_Users.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu_Administrator.Designer.cs">
-      <DependentUpon>Menu_Administrator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Menu_Customers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu_Customers.Designer.cs">
-      <DependentUpon>Menu_Customers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Menu_Executors.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu_Executors.Designer.cs">
-      <DependentUpon>Menu_Executors.cs</DependentUpon>
+    <Compile Include="Menu_Users.Designer.cs">
+      <DependentUpon>Menu_Users.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,14 +92,8 @@
     <EmbeddedResource Include="Authorization_TypeOfAccount.resx">
       <DependentUpon>Authorization_TypeOfAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu_Administrator.resx">
-      <DependentUpon>Menu_Administrator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu_Customers.resx">
-      <DependentUpon>Menu_Customers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu_Executors.resx">
-      <DependentUpon>Menu_Executors.cs</DependentUpon>
+    <EmbeddedResource Include="Menu_Users.resx">
+      <DependentUpon>Menu_Users.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

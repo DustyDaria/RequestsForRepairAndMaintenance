@@ -27,9 +27,8 @@ namespace RequestsForRepairAndMaintenance
 
         DataBase dataBase = new DataBase();
 
-        string queryCheckUsersData = string.Empty;
-        string queryUsersID_GET = string.Empty;
 
+        
         public Authorization_TypeOfAccount(string Email, string Password)
         {
             InitializeComponent();
@@ -41,6 +40,7 @@ namespace RequestsForRepairAndMaintenance
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.Text = "Тип аккаунта";
+            this.BackColor = Color.Azure;
 
             label_Ask.Text = "Под каким аккаунтом вы хотите зайти?";
             label_Ask.Font = font_MainText;
@@ -68,12 +68,14 @@ namespace RequestsForRepairAndMaintenance
             btn_Executors.TextAlign = ContentAlignment.MiddleCenter;
             btn_Executors.Click += new System.EventHandler(btn_Executors_Click);
 
+            
+
             SizeLocation_New();
             ControlsAdd();
 
-            queryCheckUsersData = string.Format("SELECT type_of_account FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
-            queryUsersID_GET = string.Format("SELECT id_user FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
+            
 
+            //label1.Text = "ID: " + dataBase.GetID(queryUsersID_GET);
         }
 
         public void SizeLocation_New()
@@ -101,14 +103,20 @@ namespace RequestsForRepairAndMaintenance
 
         private void btn_Administrator_Click(object sender, EventArgs e)
         {
-            
+            string queryCheckUsersData = string.Format("SELECT type_of_account FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
+            string queryUsersID_GET = string.Format("SELECT id_user FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
+
             if (dataBase.GetResult(queryCheckUsersData) == "Системный администратор")
             {
                 userID = dataBase.GetID(queryUsersID_GET);
 
-                Menu_Administrator menu_Administrator = new Menu_Administrator(userID);
+                /*Menu_Administrator menu_Administrator = new Menu_Administrator(userID);
                 this.Close();
-                menu_Administrator.Show();
+                menu_Administrator.Show();*/
+
+                Menu_Users menu_Users = new Menu_Users(userID);
+                this.Close();
+                menu_Users.Show();
             }
             else
             {
@@ -118,13 +126,16 @@ namespace RequestsForRepairAndMaintenance
 
         private void btn_Customers_Click(object sender, EventArgs e)
         {
+            string queryCheckUsersData = string.Format("SELECT type_of_account FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
+            string queryUsersID_GET = string.Format("SELECT id_user FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
+
             if (dataBase.GetResult(queryCheckUsersData) == "Заказчик")
             {
                 userID = dataBase.GetID(queryUsersID_GET);
 
-                Menu_Customers menu_Customers = new Menu_Customers(userID);
+                Menu_Users menu_Users = new Menu_Users(userID);
                 this.Close();
-                menu_Customers.Show();
+                menu_Users.Show();
             }
             else
             {
@@ -134,16 +145,19 @@ namespace RequestsForRepairAndMaintenance
 
         private void btn_Executors_Click(object sender, EventArgs e)
         {
+            string queryCheckUsersData = string.Format("SELECT type_of_account FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
+            string queryUsersID_GET = string.Format("SELECT id_user FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
+
             if (dataBase.GetResult(queryCheckUsersData) == "Исполнитель")
             {
                 userID = dataBase.GetID(queryUsersID_GET);
 
-                Menu_Executors menu_Executors = new Menu_Executors(userID);
+                Menu_Users menu_Users = new Menu_Users(userID);
                 Authorization authorization = new Authorization();
                 
                 this.Close();
                 authorization.Close();
-                menu_Executors.Show();
+                menu_Users.Show();
             }
             else
             {

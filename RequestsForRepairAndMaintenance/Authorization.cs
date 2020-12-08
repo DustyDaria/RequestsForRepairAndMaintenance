@@ -14,21 +14,24 @@ namespace RequestsForRepairAndMaintenance
     {
         Font font_Header = new Font("Arial", 20, FontStyle.Bold);
         Font font_MainText = new Font("Arial", 14, FontStyle.Regular);
+
         GroupBox groupBoxTop = new System.Windows.Forms.GroupBox();
+
         Label label_Please = new System.Windows.Forms.Label();
         Label label_Email = new System.Windows.Forms.Label();
         Label label_Password = new System.Windows.Forms.Label();
+
         TextBox textBox_Email = new System.Windows.Forms.TextBox();
         TextBox textBox_Password = new System.Windows.Forms.TextBox();
+
         Button btn_Login = new System.Windows.Forms.Button();
         //Button btn_Cancel = new System.Windows.Forms.Button();
 
         string Email = string.Empty;
         string Password = string.Empty;
 
-
         DataBase dataBase = new DataBase();
-        //Style style = new Style();
+
         public Authorization()
         {
             InitializeComponent();
@@ -37,12 +40,13 @@ namespace RequestsForRepairAndMaintenance
             this.MinimumSize = new Size(750,600);
             this.Text = "Авторизация";
             this.ResizeRedraw = true;
+            this.BackColor = Color.Azure;
             
             groupBoxTop.Text = "Учет заявок на техническое обслуживание и ремонт (ТОиР)";
             groupBoxTop.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             groupBoxTop.Dock = System.Windows.Forms.DockStyle.Top;
             groupBoxTop.BackColor = Color.SteelBlue;
-            groupBoxTop.ForeColor = Color.WhiteSmoke;
+            groupBoxTop.ForeColor = Color.Azure;
             groupBoxTop.Font = font_Header;
 
             label_Please.Text = "Пожалуйста, авторизуйтесь в системе,\nиспользуя ваш адрес электронной почты и пароль.";
@@ -75,7 +79,6 @@ namespace RequestsForRepairAndMaintenance
             btn_Login.ForeColor = Color.DimGray;
             btn_Login.BackColor = Color.LightSteelBlue;
             btn_Login.TextAlign = ContentAlignment.MiddleCenter;
-
             btn_Login.Click += new System.EventHandler(btn_Login_Click);
 
             SizeLocation_New();

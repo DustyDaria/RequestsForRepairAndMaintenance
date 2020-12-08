@@ -1,6 +1,6 @@
 ﻿namespace RequestsForRepairAndMaintenance
 {
-    partial class Menu_Customers
+    partial class Menu_Users
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Customers));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Users));
             this.SuspendLayout();
             // 
-            // Menu_Customers
+            // Menu_Executors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Menu_Customers";
-            this.Text = "Menu_Customers";
+            this.Name = "Menu_Executors";
+            this.Text = "Menu_Executors";
+            this.Load += new System.EventHandler(this.Menu_Executors_Load);
+            this.ResizeEnd += new System.EventHandler(this.Menu_Executors_ResizeEnd);
+            this.SizeChanged += new System.EventHandler(this.Menu_Executors_SizeChanged);
             this.ResumeLayout(false);
 
         }
