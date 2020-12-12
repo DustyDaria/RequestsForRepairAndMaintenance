@@ -756,9 +756,9 @@ namespace RequestsForRepairAndMaintenance
                 {
                     string queryU_R_Executors_SET = string.Format("INSERT INTO U_R_Executors (userID, requestID) VALUES ('"
                         + mainID + "', '" + requestID + "');");
-
                     string queryStatusRequest_SET = string.Format("UPDATE Requests SET status_request = '" + statusRequest + "' WHERE id_request = '" + requestID + "';");
                     dataBase.Update(queryStatusRequest_SET);
+                    dataBase.Insert(queryU_R_Executors_SET);
 
                     MessageBox.Show("Данные заявки были успешно обновлены!\nДанная заявка закреплена за Вами, можете приступать к выполнению работ по текущей заявке :D");
                 }
