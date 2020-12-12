@@ -70,6 +70,12 @@
     <Compile Include="Authorization_TypeOfAccount.Designer.cs">
       <DependentUpon>Authorization_TypeOfAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsersData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersData.Designer.cs">
+      <DependentUpon>UsersData.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsersRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Authorization_TypeOfAccount.resx">
       <DependentUpon>Authorization_TypeOfAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersData.resx">
+      <DependentUpon>UsersData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersRequest.resx">
       <DependentUpon>UsersRequest.cs</DependentUpon>

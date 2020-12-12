@@ -196,7 +196,9 @@ namespace RequestsForRepairAndMaintenance
 
         private void btn_RegistrationNewUser_Click(object sender, EventArgs e)
         {
-
+            UsersData usersData = new UsersData(mainID, "Создать", 0);
+            this.Close();
+            usersData.Show();
         }
 
         private void btn_ExecutorsUsers_Click(object sender, EventArgs e)

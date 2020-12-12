@@ -162,32 +162,6 @@ namespace RequestsForRepairAndMaintenance
         }
 
 
-        public string getResultTest(string query)
-        {
-            string result = String.Empty;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = string.Format(query);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int i = 0;
-                            result = (string)reader[i];
-                            i++;
-                        }
-                        reader.Close();
-                    }
-                }
-                connection.Close();
-                return result;
-            }
-        }
-
         public bool Check(string query, string data)
         {
             bool result = false;

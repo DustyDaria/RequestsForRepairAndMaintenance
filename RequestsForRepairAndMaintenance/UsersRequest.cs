@@ -79,14 +79,9 @@ namespace RequestsForRepairAndMaintenance
         {
             InitializeComponent();
 
-            //string queryCheckTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
-            
             mainID = userID;
             usersAction = action;
             requestID = requestID_GET;
-            //typeOfAccount = dataBase.getResultTest(queryCheckTypeOfAccount_GET);
-            label2.Text = "id users: " + mainID;
-            //label1.Text = "тип акк: " + dataBase.GetResult(queryCheckTypeOfAccount_GET);
 
             // ФОРМА
             this.WindowState = FormWindowState.Maximized;
@@ -356,10 +351,7 @@ namespace RequestsForRepairAndMaintenance
             {
                 if (usersAction == "Создать")
                 {
-                    //textBox_name_request.ReadOnly = true;
-
                     textBox_name_request.Enabled = true;
-
                     richTextBox_description_request.Enabled = true;
                     richTextBox_comment_request.Enabled = true;
                     comboBox_room_number.Enabled = true;
@@ -688,6 +680,8 @@ namespace RequestsForRepairAndMaintenance
                 {
                     string queryStatusRequest_SET = string.Format("UPDATE Requests SET status_request = '" + statusRequest + "' WHERE id_request = '" + requestID + "';");
                     dataBase.Update(queryStatusRequest_SET);
+
+                    MessageBox.Show("Данные заявки были успешно обновлены!\n");
                 }
             }
             else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Заказчик")
@@ -752,14 +746,28 @@ namespace RequestsForRepairAndMaintenance
                 {
                     string queryStatusRequest_SET = string.Format("UPDATE Requests SET status_request = '" + statusRequest + "' WHERE id_request = '" + requestID + "';");
                     dataBase.Update(queryStatusRequest_SET);
+
+                    MessageBox.Show("Данные заявки были успешно обновлены!\n");
                 }
             }
             else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Исполнитель")
             {
-                if ((usersAction == "Принять") || (usersAction == "Сдать"))
+                if (usersAction == "Принять")
+                {
+                    string queryU_R_Executors_SET = string.Format("INSERT INTO U_R_Executors (userID, requestID) VALUES ('"
+                        + mainID + "', '" + requestID + "');");
+
+                    string queryStatusRequest_SET = string.Format("UPDATE Requests SET status_request = '" + statusRequest + "' WHERE id_request = '" + requestID + "';");
+                    dataBase.Update(queryStatusRequest_SET);
+
+                    MessageBox.Show("Данные заявки были успешно обновлены!\nДанная заявка закреплена за Вами, можете приступать к выполнению работ по текущей заявке :D");
+                }
+                else if (usersAction == "Сдать")
                 {
                     string queryStatusRequest_SET = string.Format("UPDATE Requests SET status_request = '" + statusRequest + "' WHERE id_request = '" + requestID + "';");
                     dataBase.Update(queryStatusRequest_SET);
+
+                    MessageBox.Show("Данные заявки были успешно обновлены!\nЕсли вы успешно выполнили необходимые по заявке работы, она к Вам больше не вернется :D");
                 }
             }
 
