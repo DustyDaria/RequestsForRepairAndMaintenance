@@ -26,8 +26,6 @@ namespace RequestsForRepairAndMaintenance
         Label label_Ask = new System.Windows.Forms.Label();
 
         DataBase dataBase = new DataBase();
-
-
         
         public Authorization_TypeOfAccount(string Email, string Password)
         {
@@ -68,14 +66,8 @@ namespace RequestsForRepairAndMaintenance
             btn_Executors.TextAlign = ContentAlignment.MiddleCenter;
             btn_Executors.Click += new System.EventHandler(btn_Executors_Click);
 
-            
-
             SizeLocation_New();
             ControlsAdd();
-
-            
-
-            //label1.Text = "ID: " + dataBase.GetID(queryUsersID_GET);
         }
 
         public void SizeLocation_New()
@@ -110,12 +102,11 @@ namespace RequestsForRepairAndMaintenance
             {
                 userID = dataBase.GetID(queryUsersID_GET);
 
-                /*Menu_Administrator menu_Administrator = new Menu_Administrator(userID);
-                this.Close();
-                menu_Administrator.Show();*/
-
                 Menu_Users menu_Users = new Menu_Users(userID);
+                Authorization authorization = new Authorization();
+
                 this.Close();
+                authorization.Close();
                 menu_Users.Show();
             }
             else
@@ -134,7 +125,10 @@ namespace RequestsForRepairAndMaintenance
                 userID = dataBase.GetID(queryUsersID_GET);
 
                 Menu_Users menu_Users = new Menu_Users(userID);
+                Authorization authorization = new Authorization();
+
                 this.Close();
+                authorization.Close();
                 menu_Users.Show();
             }
             else
@@ -143,7 +137,7 @@ namespace RequestsForRepairAndMaintenance
             }
         }
 
-        private void btn_Executors_Click(object sender, EventArgs e)
+        public void btn_Executors_Click(object sender, EventArgs e)
         {
             string queryCheckUsersData = string.Format("SELECT type_of_account FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
             string queryUsersID_GET = string.Format("SELECT id_user FROM Users WHERE user_login = '" + userEmail + "' AND user_password = '" + userPassword + "';");
@@ -154,7 +148,7 @@ namespace RequestsForRepairAndMaintenance
 
                 Menu_Users menu_Users = new Menu_Users(userID);
                 Authorization authorization = new Authorization();
-                
+
                 this.Close();
                 authorization.Close();
                 menu_Users.Show();

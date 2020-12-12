@@ -14,6 +14,7 @@ namespace RequestsForRepairAndMaintenance
     {
         int mainID = 0;
 
+
         /* МЕНЮ АДМИНИСТРАТОРА
          * 
          * Пользователи ("Все пользователи")
@@ -61,9 +62,9 @@ namespace RequestsForRepairAndMaintenance
 
         Label label_HeaderMenu = new System.Windows.Forms.Label();
 
-        //string queryCheckTypeOfAccount_GET = string.Empty;
-
         DataBase dataBase = new DataBase();
+
+        //string typeOfAccount = string.Empty;
 
         public Menu_Users(int ID)
         {
@@ -71,7 +72,15 @@ namespace RequestsForRepairAndMaintenance
 
             mainID = ID;
 
-            
+            /*string queryCheckTypeOfAccount_GET_Test = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
+
+            mainID = ID;
+            //usersAction = action;
+            //requestID = requestID_GET;
+            typeOfAccount = dataBase.getResultTest(queryCheckTypeOfAccount_GET_Test);
+            label2.Text = "id users: " + mainID;
+            label1.Text = "тип акк: " + typeOfAccount;*/
+
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = new Size(800, 600);
             this.ResizeRedraw = true;
@@ -180,6 +189,9 @@ namespace RequestsForRepairAndMaintenance
         private void btn_CreateNewRequest_Click(object sender, EventArgs e)
         {
 
+            UsersRequest usersRequest = new UsersRequest(mainID, "Создать", 0);
+            this.Close();
+            usersRequest.Show();
         }
 
         private void btn_RegistrationNewUser_Click(object sender, EventArgs e)

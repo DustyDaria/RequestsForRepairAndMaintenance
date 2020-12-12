@@ -37,7 +37,7 @@ namespace RequestsForRepairAndMaintenance
             InitializeComponent();
 
             this.WindowState = FormWindowState.Maximized;
-            this.MinimumSize = new Size(750,600);
+            this.MinimumSize = new Size(800, 600);
             this.Text = "Авторизация";
             this.ResizeRedraw = true;
             this.BackColor = Color.Azure;
@@ -108,7 +108,6 @@ namespace RequestsForRepairAndMaintenance
                     this.Enabled = false;
                     authorization_TypeOfAccount.Show();
                     authorization_TypeOfAccount.FormClosed += (obj, args) => this.Enabled = true;
-
                 }
                 else
                 {
