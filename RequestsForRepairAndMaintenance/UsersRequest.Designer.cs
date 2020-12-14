@@ -39,7 +39,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsersRequest";
             this.Text = "CreateNewRequest";
-            this.Load += new System.EventHandler(this.UsersRequest_Load);
             this.ResizeEnd += new System.EventHandler(this.CreateNewRequest_ResizeEnd);
             this.SizeChanged += new System.EventHandler(this.CreateNewRequest_SizeChanged);
             this.ResumeLayout(false);

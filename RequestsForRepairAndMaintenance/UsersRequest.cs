@@ -100,7 +100,6 @@ namespace RequestsForRepairAndMaintenance
             groupBoxTop.Font = font_Header;
 
             label_Header.Font = font_SmallHeader;
-            label_Header.Text = "Создать новую заявку";
             label_Header.ForeColor = Color.MidnightBlue;
             label_Header.TextAlign = ContentAlignment.MiddleCenter;
 
@@ -269,7 +268,7 @@ namespace RequestsForRepairAndMaintenance
 
             // КАТЕГОРИЯ ЗАЯВКИ
             label_category_request.Font = font_MiddleText;
-            label_category_request.Text = "*   Категория работ: ";
+            label_category_request.Text = "*\nКатегория работ: ";
             label_category_request.ForeColor = Color.DimGray;
             label_category_request.TextAlign = ContentAlignment.MiddleLeft;
 
@@ -302,6 +301,8 @@ namespace RequestsForRepairAndMaintenance
             {
                 if (usersAction == "Модерация")
                 {
+                    label_Header.Text = "Редактировать заявку";
+
                     GetDataToViewAndChange();
 
                     textBox_name_request.Enabled = false;
@@ -325,6 +326,8 @@ namespace RequestsForRepairAndMaintenance
                 }
                 if (usersAction == "В архив")
                 {
+                    label_Header.Text = "Редактировать заявку";
+
                     GetDataToViewAndChange();
 
                     textBox_name_request.Enabled = false;
@@ -351,6 +354,8 @@ namespace RequestsForRepairAndMaintenance
             {
                 if (usersAction == "Создать")
                 {
+                    label_Header.Text = "Создать новую заявку";
+
                     textBox_name_request.Enabled = true;
                     richTextBox_description_request.Enabled = true;
                     richTextBox_comment_request.Enabled = true;
@@ -373,6 +378,8 @@ namespace RequestsForRepairAndMaintenance
                 }
                 else if(usersAction == "Просмотреть")
                 {
+                    label_Header.Text = "Просмотреть заявку";
+
                     GetDataToViewAndChange();
 
                     textBox_name_request.Enabled = false;
@@ -396,6 +403,8 @@ namespace RequestsForRepairAndMaintenance
                 }
                 else if(usersAction == "Завершить/вернуть")
                 {
+                    label_Header.Text = "Редактировать заявку";
+
                     GetDataToViewAndChange();
 
                     textBox_name_request.Enabled = false;
@@ -422,6 +431,8 @@ namespace RequestsForRepairAndMaintenance
             {
                 if (usersAction == "Принять")
                 {
+                    label_Header.Text = "Принять заявку";
+
                     GetDataToViewAndChange();
 
                     textBox_name_request.Enabled = false;
@@ -445,6 +456,8 @@ namespace RequestsForRepairAndMaintenance
                 }
                 else if (usersAction == "Сдать")
                 {
+                    label_Header.Text = "Сдать заявку";
+
                     GetDataToViewAndChange();
 
                     textBox_name_request.Enabled = false;
@@ -466,20 +479,11 @@ namespace RequestsForRepairAndMaintenance
                     radioButton_Finished.Enabled = true;
                     radioButton_InTheArchive.Enabled = false;
                 }
-                
             }
-
-
             // РАСПОЛОЖЕНИЕ, РАЗМЕРЫ, ДОБАВЛЕНИЕ НА ФОРМУ
             SizeLocation_New();
             ControlsAdd();
             //
-        }
-
-
-        private void UsersRequest_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void SizeLocation_New()
@@ -606,9 +610,6 @@ namespace RequestsForRepairAndMaintenance
             btn_Cancel.Location = new System.Drawing.Point((int)LocationX(33, 40), (int)LocationY(37, 30));
             btn_Cancel.Size = new System.Drawing.Size((int)LocationX(5, 40), (int)LocationY(3, 30));
             //
-
-
-
         }
 
         private void ControlsAdd()

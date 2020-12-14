@@ -11,3 +11,4 @@ C:\Users\daria\source\repos\RequestsForRepairAndMaintenance\RequestsForRepairAnd
 C:\Users\daria\source\repos\RequestsForRepairAndMaintenance\RequestsForRepairAndMaintenance\obj\Debug\RequestsForRepairAndMaintenance.Authorization_TypeOfAccount.resources
 C:\Users\daria\source\repos\RequestsForRepairAndMaintenance\RequestsForRepairAndMaintenance\obj\Debug\RequestsForRepairAndMaintenance.Menu_Users.resources
 C:\Users\daria\source\repos\RequestsForRepairAndMaintenance\RequestsForRepairAndMaintenance\obj\Debug\RequestsForRepairAndMaintenance.UsersRequest.resources
+C:\Users\daria\source\repos\RequestsForRepairAndMaintenance\RequestsForRepairAndMaintenance\obj\Debug\RequestsForRepairAndMaintenance.UsersData.resources

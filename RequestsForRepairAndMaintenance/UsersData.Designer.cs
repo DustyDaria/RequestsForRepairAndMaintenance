@@ -39,6 +39,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsersData";
             this.Text = "UsersData";
+            this.ResizeEnd += new System.EventHandler(this.UsersData_ResizeEnd);
+            this.SizeChanged += new System.EventHandler(this.UsersData_SizeChanged);
             this.ResumeLayout(false);
 
         }
