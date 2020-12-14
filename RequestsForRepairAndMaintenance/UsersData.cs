@@ -931,7 +931,7 @@ namespace RequestsForRepairAndMaintenance
             string queryName_GET = string.Format("SELECT name FROM Users WHERE id_user = '" + secondaryID + "';");
             string queryMiddleName_GET = string.Format("SELECT middle_name FROM Users WHERE id_user = '" + secondaryID + "';");
             string queryPosition_GET = string.Format("SELECT position FROM Users WHERE id_user = '" + secondaryID + "';");
-            string queryPhone_GET = string.Format("SEKECT phone FROM Users WHERE id_user = '" + secondaryID + "';");
+            string queryPhone_GET = string.Format("SELECT phone FROM Users WHERE id_user = '" + secondaryID + "';");
             string queryUserLogin_GET = string.Format("SELECT user_login FROM Users WHERE id_user = '" + secondaryID + "';");
             string queryUserPassword_GET = string.Format("SELECT user_password FROM Users WHERE id_user = '" + secondaryID + "'; ");
             string queryTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + secondaryID + "'; ");

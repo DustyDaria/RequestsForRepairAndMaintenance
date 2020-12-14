@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RequestsForRepairAndMaintenance.Properties;
 
 namespace RequestsForRepairAndMaintenance
 {
@@ -47,6 +48,7 @@ namespace RequestsForRepairAndMaintenance
         Font font_Header = new Font("Arial", 20, FontStyle.Bold);
         Font font_SmallHeader = new Font("Arial", 16, FontStyle.Bold);
         Font font_MainText = new Font("Arial", 14, FontStyle.Regular);
+        Font font_SmallText = new Font("Arial", 10, FontStyle.Regular);
 
         GroupBox groupBoxTop = new System.Windows.Forms.GroupBox();
 
@@ -59,12 +61,14 @@ namespace RequestsForRepairAndMaintenance
         Button btn_MyArchivedRequest = new System.Windows.Forms.Button();
         Button btn_EditPersonalData = new System.Windows.Forms.Button();
         Button btn_ReportGeneration = new System.Windows.Forms.Button();
+        Button btn_Back = new System.Windows.Forms.Button();
+        Button btn_LogOut = new System.Windows.Forms.Button();
 
         Label label_HeaderMenu = new System.Windows.Forms.Label();
 
-        DataBase dataBase = new DataBase();
+        LinkLabel linkLabel_UserName = new System.Windows.Forms.LinkLabel();
 
-        //string typeOfAccount = string.Empty;
+        DataBase dataBase = new DataBase();
 
         public Menu_Users(int ID)
         {
@@ -72,20 +76,12 @@ namespace RequestsForRepairAndMaintenance
 
             mainID = ID;
 
-            /*string queryCheckTypeOfAccount_GET_Test = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
-
-            mainID = ID;
-            //usersAction = action;
-            //requestID = requestID_GET;
-            typeOfAccount = dataBase.getResultTest(queryCheckTypeOfAccount_GET_Test);
-            label2.Text = "id users: " + mainID;
-            label1.Text = "тип акк: " + typeOfAccount;*/
-
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = new Size(800, 600);
             this.ResizeRedraw = true;
             this.BackColor = Color.Azure;
 
+            //ШАПКА
             groupBoxTop.Text = "Учет заявок на техническое обслуживание и ремонт (ТОиР)";
             groupBoxTop.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             groupBoxTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -93,15 +89,46 @@ namespace RequestsForRepairAndMaintenance
             groupBoxTop.ForeColor = Color.Azure;
             groupBoxTop.Font = font_Header;
 
+            btn_Back.Text = string.Empty;
+            btn_Back.BackgroundImage = Resources.left_arrow128;
+            btn_Back.BackgroundImageLayout = ImageLayout.Zoom;
+            btn_Back.BackColor = Color.SteelBlue;
+            btn_Back.Cursor = Cursors.Hand;
+            btn_Back.FlatAppearance.BorderSize = 0;
+            btn_Back.FlatStyle = FlatStyle.Flat;
+            btn_Back.Click += new System.EventHandler(btn_Back_Click);
+
+            btn_LogOut.Text = string.Empty;
+            btn_LogOut.BackgroundImage = Resources.logout128;
+            btn_LogOut.BackgroundImageLayout = ImageLayout.Zoom;
+            btn_LogOut.BackColor = Color.SteelBlue;
+            btn_LogOut.Cursor = Cursors.Hand;
+            btn_LogOut.FlatAppearance.BorderSize = 0;
+            btn_LogOut.FlatStyle = FlatStyle.Flat;
+            btn_LogOut.Click += new System.EventHandler(btn_LogOut_Click);
+
+            linkLabel_UserName.Font = font_SmallText;
+            linkLabel_UserName.TextAlign = ContentAlignment.MiddleRight;
+            linkLabel_UserName.LinkColor = Color.Azure;
+            linkLabel_UserName.BackColor = Color.SteelBlue;
+            linkLabel_UserName.Cursor = Cursors.Hand;
+            linkLabel_UserName.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            linkLabel_UserName.Click += new System.EventHandler(linkLabel_UserName_Click);
+
+            
+            //
+
             label_HeaderMenu.Font = font_SmallHeader;
             label_HeaderMenu.ForeColor = Color.MidnightBlue;
             label_HeaderMenu.TextAlign = ContentAlignment.MiddleCenter;
+
 
             btn_CreateNewRequest.Text = "Создать новую заявку";
             btn_CreateNewRequest.Font = font_MainText;
             btn_CreateNewRequest.ForeColor = Color.DimGray;
             btn_CreateNewRequest.BackColor = Color.LightSteelBlue;
             btn_CreateNewRequest.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_CreateNewRequest.Click += new System.EventHandler(btn_CreateNewRequest_Click);
 
             btn_RegistrationNewUser.Text = "Зарегистрировать..";
@@ -109,6 +136,7 @@ namespace RequestsForRepairAndMaintenance
             btn_RegistrationNewUser.ForeColor = Color.DimGray;
             btn_RegistrationNewUser.BackColor = Color.LightSteelBlue;
             btn_RegistrationNewUser.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_RegistrationNewUser.Click += new System.EventHandler(btn_RegistrationNewUser_Click);
 
             btn_ExecutorsUsers.Text = "Исполнители";
@@ -116,6 +144,7 @@ namespace RequestsForRepairAndMaintenance
             btn_ExecutorsUsers.ForeColor = Color.DimGray;
             btn_ExecutorsUsers.BackColor = Color.LightSteelBlue;
             btn_ExecutorsUsers.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_ExecutorsUsers.Click += new System.EventHandler(btn_ExecutorsUsers_Click);
 
             btn_CustomerUsers.Text = "Заказчики";
@@ -123,6 +152,7 @@ namespace RequestsForRepairAndMaintenance
             btn_CustomerUsers.ForeColor = Color.DimGray;
             btn_CustomerUsers.BackColor = Color.LightSteelBlue;
             btn_CustomerUsers.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_CustomerUsers.Click += new System.EventHandler(btn_CustomerUsers_Click);
 
             btn_AllUsers.Text = "Все пользователи";
@@ -130,18 +160,21 @@ namespace RequestsForRepairAndMaintenance
             btn_AllUsers.ForeColor = Color.DimGray;
             btn_AllUsers.BackColor = Color.LightSteelBlue;
             btn_AllUsers.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_AllUsers.Click += new System.EventHandler(btn_AllUsers_Click);
 
             btn_MyRequest.Font = font_MainText;
             btn_MyRequest.ForeColor = Color.DimGray;
             btn_MyRequest.BackColor = Color.LightSteelBlue;
             btn_MyRequest.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_MyRequest.Click += new System.EventHandler(btn_MyRequest_Click);
 
             btn_MyArchivedRequest.Font = font_MainText;
             btn_MyArchivedRequest.ForeColor = Color.DimGray;
             btn_MyArchivedRequest.BackColor = Color.LightSteelBlue;
             btn_MyArchivedRequest.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_MyArchivedRequest.Click += new System.EventHandler(btn_MyArchivedRequest_Click);
 
             btn_EditPersonalData.Text = "Редактировать личный профиль";
@@ -149,6 +182,7 @@ namespace RequestsForRepairAndMaintenance
             btn_EditPersonalData.ForeColor = Color.DimGray;
             btn_EditPersonalData.BackColor = Color.LightSteelBlue;
             btn_EditPersonalData.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_EditPersonalData.Click += new System.EventHandler(btn_EditPersonalData_Click);
 
             btn_ReportGeneration.Text = "Создать отчёт";
@@ -156,9 +190,13 @@ namespace RequestsForRepairAndMaintenance
             btn_ReportGeneration.ForeColor = Color.DimGray;
             btn_ReportGeneration.BackColor = Color.LightSteelBlue;
             btn_ReportGeneration.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Back.Cursor = Cursors.Hand;
             btn_ReportGeneration.Click += new System.EventHandler(btn_ReportGeneration_Click);
 
             string queryCheckTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
+            string queryUserLastName_GET = string.Format("SELECT last_name FROM Users WHERE id_user = '" + mainID + "';");
+            string queryUserName_GET = string.Format("SELECT name FROM Users WHERE id_user = '" + mainID + "';");
+            string queryUserMiddleName_GET = string.Format("SELECT middle_name FROM Users WHERE id_user = '" + mainID + "';");
 
             if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Системный администратор")
             {
@@ -166,6 +204,9 @@ namespace RequestsForRepairAndMaintenance
                 label_HeaderMenu.Text = "Меню системного администратора";
                 btn_MyRequest.Text = "Текущие заявки";
                 btn_MyArchivedRequest.Text = "Архивные заявки";
+
+                linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
             }
             else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Заказчик")
             {
@@ -173,6 +214,10 @@ namespace RequestsForRepairAndMaintenance
                 label_HeaderMenu.Text = "Меню заказчика";
                 btn_MyRequest.Text = "Мои заявки";
                 btn_MyArchivedRequest.Text = "Мои архивные заявки";
+
+                linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
+
             }
             else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Исполнитель")
             {
@@ -180,10 +225,35 @@ namespace RequestsForRepairAndMaintenance
                 label_HeaderMenu.Text = "Меню исполнителя";
                 btn_MyRequest.Text = "Мои заявки";
                 btn_MyArchivedRequest.Text = "Мои архивные заявки";
+
+                linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
+
             }
 
             SizeLocation_New();
             ControlsAdd();
+        }
+
+        private void linkLabel_UserName_Click(object sender, EventArgs e)
+        {
+            UsersData usersData = new UsersData(mainID, "Просмотреть", 0);
+            this.Close();
+            usersData.Show();
+        }
+
+        private void btn_Back_Click(object sender, EventArgs e)
+        {
+            Authorization authorization = new Authorization();
+            this.Close();
+            authorization.Show();
+        }
+
+        private void btn_LogOut_Click(object sender, EventArgs e)
+        {
+            Authorization authorization = new Authorization();
+            this.Close();
+            authorization.Show();
         }
 
         private void btn_CreateNewRequest_Click(object sender, EventArgs e)
@@ -274,6 +344,15 @@ namespace RequestsForRepairAndMaintenance
             label_HeaderMenu.Location = new System.Drawing.Point((int)LocationX(9, 24), (int)LocationY(6, 20));
             label_HeaderMenu.Size = new System.Drawing.Size((int)LocationX(6, 24), (int)LocationY(3, 20));
 
+            btn_Back.Location = new System.Drawing.Point((int)LocationX(1, 24), (int)LocationY(1, 20));
+            btn_Back.Size = new System.Drawing.Size((int)LocationX(1, 24), (int)LocationY(1, 20));
+
+            btn_LogOut.Location = new System.Drawing.Point((int)LocationX(22, 24), (int)LocationY(1, 20));
+            btn_LogOut.Size = new System.Drawing.Size((int)LocationX(1, 24), (int)LocationY(1, 20));
+
+            linkLabel_UserName.Location = new System.Drawing.Point((int)LocationX(18, 24), (int)LocationY(1, 20));
+            linkLabel_UserName.Size = new System.Drawing.Size((int)LocationX(3, 24), (int)LocationY(1, 20));
+
             if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Системный администратор")
             {
                 btn_AllUsers.Location = new System.Drawing.Point((int)LocationX(1, 24), (int)LocationY(6, 20));
@@ -339,6 +418,9 @@ namespace RequestsForRepairAndMaintenance
         {
             string queryCheckTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
 
+            this.Controls.Add(btn_Back);
+            this.Controls.Add(btn_LogOut);
+            this.Controls.Add(linkLabel_UserName);
             this.Controls.Add(groupBoxTop);
             this.Controls.Add(label_HeaderMenu);
             this.Controls.Add(btn_MyRequest);
