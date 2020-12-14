@@ -17,12 +17,8 @@ namespace RequestsForRepairAndMaintenance
         int requestID = 0;
         string usersAction = string.Empty;
         string typeOfAccount = string.Empty;
+        char charToTrim = ' ';
 
-        /*string nameRequest = string.Empty;
-        string descriptionRequest = string.Empty;
-        string commentRequest = string.Empty;
-        int roomNumber = 0;
-        string inventoryNumber = string.Empty;*/
         string statusRequest = string.Empty;
 
         Font font_Header = new Font("Arial", 20, FontStyle.Bold);
@@ -715,17 +711,19 @@ namespace RequestsForRepairAndMaintenance
                         try
                         {
                             string queryDataRequest_SET = string.Format("INSERT INTO Requests (date_start, date_end, status_request, room_number, name_request, description_request, comment_request, inventory_number, category_request) VALUES ('"
-                            + dateTime_Start.Value + "', '" + dateTime_End.Value + "', 'На модерации', '" + comboBox_room_number.Text + "', '" + textBox_name_request.Text + "', '"
-                            + richTextBox_description_request.Text + "', '" + richTextBox_comment_request.Text + "', '" + textBox_inventory_number.Text + "', '" 
-                            + comboBox_category_request.Text + "');");
+                            + dateTime_Start.Value + "', '" + dateTime_End.Value + "', 'На модерации', '" + comboBox_room_number.Text.Trim(charToTrim) + "', '" 
+                            + textBox_name_request.Text.Trim(charToTrim) + "', '" + richTextBox_description_request.Text.Trim(charToTrim) + "', '" 
+                            + richTextBox_comment_request.Text.Trim(charToTrim) + "', '" + textBox_inventory_number.Text.Trim(charToTrim) + "', '" 
+                            + comboBox_category_request.Text.Trim(charToTrim) + "');");
 
                             dataBase.Insert(queryDataRequest_SET);
 
                             string queryIDRequest_GET = string.Format("SELECT id_request FROM Requests WHERE date_start = '"
                                 + dateTime_Start.Value + "' AND date_end = '" + dateTime_End.Value + "' AND status_request = 'На модерации' AND room_number = '"
-                                + comboBox_room_number.Text + "' AND name_request = '" + textBox_name_request.Text + "' AND description_request = '"
-                                + richTextBox_description_request.Text + "' AND comment_request = '" + richTextBox_comment_request.Text + "' AND inventory_number = '"
-                                + textBox_inventory_number.Text + "' AND category_request = '" + comboBox_category_request.Text + "';");
+                                + comboBox_room_number.Text.Trim(charToTrim) + "' AND name_request = '" + textBox_name_request.Text.Trim(charToTrim) 
+                                + "' AND description_request = '" + richTextBox_description_request.Text.Trim(charToTrim) + "' AND comment_request = '" 
+                                + richTextBox_comment_request.Text.Trim(charToTrim) + "' AND inventory_number = '" + textBox_inventory_number.Text.Trim(charToTrim) 
+                                + "' AND category_request = '" + comboBox_category_request.Text.Trim(charToTrim) + "';");
                             string queryU_R_CustomersData_SET = string.Format("INSERT INTO U_R_Customers (userID, requestID) VALUES ('"
                                 + mainID + "', '" + dataBase.GetID(queryIDRequest_GET) + "');");
 
