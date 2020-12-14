@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RequestsForRepairAndMaintenance.Properties;
 
 namespace RequestsForRepairAndMaintenance
 {
@@ -23,12 +24,17 @@ namespace RequestsForRepairAndMaintenance
         Font font_mainText = new Font("Arial", 14, FontStyle.Regular);
         Font font_MiddleText = new Font("Arial", 12, FontStyle.Regular);
         Font font_SmallText = new Font("Arial", 8, FontStyle.Regular);
+        Font font_MiddleLinkText = new Font("Arial", 10, FontStyle.Regular);
 
         GroupBox groupBoxTop = new System.Windows.Forms.GroupBox();
 
         Button btn_Save = new System.Windows.Forms.Button();
         Button btn_Cancel = new System.Windows.Forms.Button();
         Button btn_Edit = new System.Windows.Forms.Button();
+        Button btn_Back = new System.Windows.Forms.Button();
+        Button btn_LogOut = new System.Windows.Forms.Button();
+
+        LinkLabel linkLabel_UserName = new System.Windows.Forms.LinkLabel();
 
         Label label_Header = new System.Windows.Forms.Label();
         Label label_AdditionalText = new System.Windows.Forms.Label();
@@ -87,6 +93,32 @@ namespace RequestsForRepairAndMaintenance
             label_Header.Font = font_SmallHeader;
             label_Header.ForeColor = Color.MidnightBlue;
             label_Header.TextAlign = ContentAlignment.MiddleCenter;
+
+            btn_Back.Text = string.Empty;
+            btn_Back.BackgroundImage = Resources.left_arrow128;
+            btn_Back.BackgroundImageLayout = ImageLayout.Zoom;
+            btn_Back.BackColor = Color.SteelBlue;
+            btn_Back.Cursor = Cursors.Hand;
+            btn_Back.FlatAppearance.BorderSize = 0;
+            btn_Back.FlatStyle = FlatStyle.Flat;
+            btn_Back.Click += new System.EventHandler(btn_Back_Click);
+
+            btn_LogOut.Text = string.Empty;
+            btn_LogOut.BackgroundImage = Resources.logout128;
+            btn_LogOut.BackgroundImageLayout = ImageLayout.Zoom;
+            btn_LogOut.BackColor = Color.SteelBlue;
+            btn_LogOut.Cursor = Cursors.Hand;
+            btn_LogOut.FlatAppearance.BorderSize = 0;
+            btn_LogOut.FlatStyle = FlatStyle.Flat;
+            btn_LogOut.Click += new System.EventHandler(btn_LogOut_Click);
+
+            linkLabel_UserName.Font = font_MiddleLinkText;
+            linkLabel_UserName.TextAlign = ContentAlignment.MiddleRight;
+            linkLabel_UserName.LinkColor = Color.Azure;
+            linkLabel_UserName.BackColor = Color.SteelBlue;
+            linkLabel_UserName.Cursor = Cursors.Hand;
+            linkLabel_UserName.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            linkLabel_UserName.Click += new System.EventHandler(linkLabel_UserName_Click);
             //
 
             //ФАМИЛИЯ
@@ -269,12 +301,19 @@ namespace RequestsForRepairAndMaintenance
 
 
             string queryCheckTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
+            string queryUserLastName_GET = string.Format("SELECT last_name FROM Users WHERE id_user = '" + mainID + "';");
+            string queryUserName_GET = string.Format("SELECT name FROM Users WHERE id_user = '" + mainID + "';");
+            string queryUserMiddleName_GET = string.Format("SELECT middle_name FROM Users WHERE id_user = '" + mainID + "';");
 
             if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Системный администратор")
             {
                 if (usersAction == "Создать")
                 {
+                    this.Text = "Зарегистрировать нового пользователя";
                     label_Header.Text = "Зарегистрировать нового пользователя";
+                    linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
+
 
                     maskedTextBox_last_name.Enabled = true;
                     maskedTextBox_name.Enabled = true;
@@ -298,7 +337,10 @@ namespace RequestsForRepairAndMaintenance
 
                     GetDataToViewAndChange();
 
+                    this.Text = "Редактировать данные пользователя";
                     label_Header.Text = "Редактировать данные пользователя";
+                    linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
                     maskedTextBox_last_name.Enabled = true;
                     maskedTextBox_name.Enabled = true;
@@ -312,22 +354,26 @@ namespace RequestsForRepairAndMaintenance
 
                     if (dataBase.Check(queryCheckRoomNumber_GET, Convert.ToString(secondaryID)) == true)
                     {
+                        label_room_number.Visible = true;
                         maskedTextBox_room_number.Visible = true;
                         maskedTextBox_room_number.Enabled = true;
                     }
                     else
                     {
+                        label_room_number.Visible = false;
                         maskedTextBox_room_number.Visible = false;
                         maskedTextBox_room_number.Enabled = false;
                     }
 
                     if (dataBase.Check(queryCheckCategoryExecutors_GET, Convert.ToString(secondaryID)) == true)
                     {
+                        label_category_executors.Visible = true;
                         comboBox_category_executors.Visible = true;
                         comboBox_category_executors.Enabled = true;
                     }
                     else
                     {
+                        label_category_executors.Visible = false;
                         comboBox_category_executors.Visible = false;
                         comboBox_category_executors.Enabled = false;
                     }
@@ -345,7 +391,10 @@ namespace RequestsForRepairAndMaintenance
 
                     GetDataToViewAndChange();
 
+                    this.Text = "Просмотреть данные пользователя";
                     label_Header.Text = "Просмотреть данные пользователя";
+                    linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
                     maskedTextBox_last_name.Enabled = false;
                     maskedTextBox_name.Enabled = false;
@@ -360,22 +409,26 @@ namespace RequestsForRepairAndMaintenance
 
                     if (dataBase.Check(queryCheckRoomNumber_GET, Convert.ToString(secondaryID)) == true)
                     {
+                        label_room_number.Visible = true;
                         maskedTextBox_room_number.Visible = true;
                         maskedTextBox_room_number.Enabled = false;
                     }
                     else
                     {
+                        label_room_number.Visible = false;
                         maskedTextBox_room_number.Visible = false;
                         maskedTextBox_room_number.Enabled = false;
                     }
 
                     if (dataBase.Check(queryCheckCategoryExecutors_GET, Convert.ToString(secondaryID)) == true)
                     {
+                        label_category_executors.Visible = true;
                         comboBox_category_executors.Visible = true;
                         comboBox_category_executors.Enabled = false;
                     }
                     else
                     {
+                        label_category_executors.Visible = false;
                         comboBox_category_executors.Visible = false;
                         comboBox_category_executors.Enabled = false;
                     }
@@ -393,7 +446,10 @@ namespace RequestsForRepairAndMaintenance
                 {
                     GetDataToViewAndChange();
 
+                    this.Text = "Редактировать данные пользователя";
                     label_Header.Text = "Редактировать данные пользователя";
+                    linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
                     maskedTextBox_last_name.Enabled = true;
                     maskedTextBox_name.Enabled = true;
@@ -403,9 +459,11 @@ namespace RequestsForRepairAndMaintenance
                     textBox_user_login.Enabled = true;
                     maskedTextBox_user_password.Enabled = true;
                     maskedTextBox_repeat_user_password.Enabled = true;
-                    comboBox_type_of_account.Enabled = true;
+                    comboBox_type_of_account.Enabled = false;
+                    label_room_number.Visible = true;
                     maskedTextBox_room_number.Visible = true;
                     maskedTextBox_room_number.Enabled = true;
+                    label_category_executors.Visible = false;
                     comboBox_category_executors.Visible = false;
                     comboBox_category_executors.Enabled = false;
                    
@@ -418,7 +476,10 @@ namespace RequestsForRepairAndMaintenance
                 {
                     GetDataToViewAndChange();
 
+                    this.Text = "Просмотреть данные пользователя";
                     label_Header.Text = "Просмотреть данные пользователя";
+                    linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
                     maskedTextBox_last_name.Enabled = false;
                     maskedTextBox_name.Enabled = false;
@@ -430,8 +491,10 @@ namespace RequestsForRepairAndMaintenance
                     maskedTextBox_repeat_user_password.Enabled = false;
                     maskedTextBox_repeat_user_password.Visible = false;
                     comboBox_type_of_account.Enabled = false;
+                    label_room_number.Visible = true;
                     maskedTextBox_room_number.Visible = true;
                     maskedTextBox_room_number.Enabled = false;
+                    label_category_executors.Visible = false;
                     comboBox_category_executors.Visible = false;
                     comboBox_category_executors.Enabled = false;
                     
@@ -449,7 +512,10 @@ namespace RequestsForRepairAndMaintenance
                 {
                     GetDataToViewAndChange();
 
+                    this.Text = "Редактировать данные пользователя";
                     label_Header.Text = "Редактировать данные пользователя";
+                    linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
                     maskedTextBox_last_name.Enabled = true;
                     maskedTextBox_name.Enabled = true;
@@ -459,11 +525,13 @@ namespace RequestsForRepairAndMaintenance
                     textBox_user_login.Enabled = true;
                     maskedTextBox_user_password.Enabled = true;
                     maskedTextBox_repeat_user_password.Enabled = true;
-                    comboBox_type_of_account.Enabled = true;
+                    comboBox_type_of_account.Enabled = false;
+                    label_room_number.Visible = false;
                     maskedTextBox_room_number.Visible = false;
                     maskedTextBox_room_number.Enabled = false;
+                    label_category_executors.Visible = true;
                     comboBox_category_executors.Visible = true;
-                    comboBox_category_executors.Enabled = true;
+                    comboBox_category_executors.Enabled = false;
 
                     btn_Edit.Enabled = false;
                     btn_Edit.Visible = false;
@@ -475,7 +543,10 @@ namespace RequestsForRepairAndMaintenance
                 {
                     GetDataToViewAndChange();
 
+                    this.Text = "Просмотреть данные пользователя";
                     label_Header.Text = "Просмотреть данные пользователя";
+                    linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
+                    + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
                     maskedTextBox_last_name.Enabled = false;
                     maskedTextBox_name.Enabled = false;
@@ -487,10 +558,12 @@ namespace RequestsForRepairAndMaintenance
                     maskedTextBox_repeat_user_password.Enabled = false;
                     maskedTextBox_repeat_user_password.Visible = false;
                     comboBox_type_of_account.Enabled = false;
+                    label_room_number.Visible = false;
                     maskedTextBox_room_number.Visible = false;
                     maskedTextBox_room_number.Enabled = false;
-                    comboBox_category_executors.Visible = false;
-                    comboBox_category_executors.Enabled = true;
+                    label_category_executors.Visible = true;
+                    comboBox_category_executors.Visible = true;
+                    comboBox_category_executors.Enabled = false;
 
                     btn_Edit.Enabled = true;
                     btn_Edit.Visible = true;
@@ -508,6 +581,16 @@ namespace RequestsForRepairAndMaintenance
 
             label_Header.Location = new System.Drawing.Point((int)LocationX(10, 40), (int)LocationY(3, 20));
             label_Header.Size = new System.Drawing.Size((int)LocationX(20, 40), (int)LocationY(2, 20));
+
+            btn_Back.Location = new System.Drawing.Point((int)LocationX(1, 24), (int)LocationY(1, 20));
+            btn_Back.Size = new System.Drawing.Size((int)LocationX(1, 24), (int)LocationY(1, 20));
+
+            btn_LogOut.Location = new System.Drawing.Point((int)LocationX(22, 24), (int)LocationY(1, 20));
+            btn_LogOut.Size = new System.Drawing.Size((int)LocationX(1, 24), (int)LocationY(1, 20));
+
+            linkLabel_UserName.Location = new System.Drawing.Point((int)LocationX(18, 24), (int)LocationY(1, 20));
+            linkLabel_UserName.Size = new System.Drawing.Size((int)LocationX(3, 24), (int)LocationY(1, 20));
+
 
             //label_AdditionalText.Location = new System.Drawing.Point((int)LocationX(33, 40), (int)LocationY(3, 20));
             //label_AdditionalText.Size = new System.Drawing.Size((int)LocationX(5, 40), (int)LocationY(2, 20));
@@ -597,6 +680,9 @@ namespace RequestsForRepairAndMaintenance
         private void ControlsAdd()
         {
             //ШАПКА
+            this.Controls.Add(btn_Back);
+            this.Controls.Add(btn_LogOut);
+            this.Controls.Add(linkLabel_UserName);
             this.Controls.Add(groupBoxTop);
             this.Controls.Add(label_Header);
             //
@@ -636,6 +722,28 @@ namespace RequestsForRepairAndMaintenance
             this.Controls.Add(btn_Cancel);
             //
         }
+
+        private void linkLabel_UserName_Click(object sender, EventArgs e)
+        {
+            UsersData usersData = new UsersData(mainID, "Просмотреть", 0);
+            this.Close();
+            usersData.Show();
+        }
+
+        private void btn_Back_Click(object sender, EventArgs e)
+        {
+            Menu_Users menu_Users = new Menu_Users(mainID);
+            this.Close();
+            menu_Users.Show();
+        }
+
+        private void btn_LogOut_Click(object sender, EventArgs e)
+        {
+            Authorization authorization = new Authorization();
+            this.Close();
+            authorization.Show();
+        }
+
 
         private void btn_Save_Click(object sender, EventArgs e)
         {

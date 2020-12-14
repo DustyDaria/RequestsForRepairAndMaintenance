@@ -48,7 +48,7 @@ namespace RequestsForRepairAndMaintenance
         Font font_Header = new Font("Arial", 20, FontStyle.Bold);
         Font font_SmallHeader = new Font("Arial", 16, FontStyle.Bold);
         Font font_MainText = new Font("Arial", 14, FontStyle.Regular);
-        Font font_SmallText = new Font("Arial", 10, FontStyle.Regular);
+        Font font_MiddleLinkText = new Font("Arial", 10, FontStyle.Regular);
 
         GroupBox groupBoxTop = new System.Windows.Forms.GroupBox();
 
@@ -64,9 +64,9 @@ namespace RequestsForRepairAndMaintenance
         Button btn_Back = new System.Windows.Forms.Button();
         Button btn_LogOut = new System.Windows.Forms.Button();
 
-        Label label_HeaderMenu = new System.Windows.Forms.Label();
-
         LinkLabel linkLabel_UserName = new System.Windows.Forms.LinkLabel();
+
+        Label label_HeaderMenu = new System.Windows.Forms.Label();
 
         DataBase dataBase = new DataBase();
 
@@ -107,28 +107,25 @@ namespace RequestsForRepairAndMaintenance
             btn_LogOut.FlatStyle = FlatStyle.Flat;
             btn_LogOut.Click += new System.EventHandler(btn_LogOut_Click);
 
-            linkLabel_UserName.Font = font_SmallText;
+            linkLabel_UserName.Font = font_MiddleLinkText;
             linkLabel_UserName.TextAlign = ContentAlignment.MiddleRight;
             linkLabel_UserName.LinkColor = Color.Azure;
             linkLabel_UserName.BackColor = Color.SteelBlue;
             linkLabel_UserName.Cursor = Cursors.Hand;
             linkLabel_UserName.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             linkLabel_UserName.Click += new System.EventHandler(linkLabel_UserName_Click);
-
-            
             //
 
             label_HeaderMenu.Font = font_SmallHeader;
             label_HeaderMenu.ForeColor = Color.MidnightBlue;
             label_HeaderMenu.TextAlign = ContentAlignment.MiddleCenter;
 
-
             btn_CreateNewRequest.Text = "Создать новую заявку";
             btn_CreateNewRequest.Font = font_MainText;
             btn_CreateNewRequest.ForeColor = Color.DimGray;
             btn_CreateNewRequest.BackColor = Color.LightSteelBlue;
             btn_CreateNewRequest.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_CreateNewRequest.Cursor = Cursors.Hand;
             btn_CreateNewRequest.Click += new System.EventHandler(btn_CreateNewRequest_Click);
 
             btn_RegistrationNewUser.Text = "Зарегистрировать..";
@@ -136,7 +133,7 @@ namespace RequestsForRepairAndMaintenance
             btn_RegistrationNewUser.ForeColor = Color.DimGray;
             btn_RegistrationNewUser.BackColor = Color.LightSteelBlue;
             btn_RegistrationNewUser.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_RegistrationNewUser.Cursor = Cursors.Hand;
             btn_RegistrationNewUser.Click += new System.EventHandler(btn_RegistrationNewUser_Click);
 
             btn_ExecutorsUsers.Text = "Исполнители";
@@ -144,7 +141,7 @@ namespace RequestsForRepairAndMaintenance
             btn_ExecutorsUsers.ForeColor = Color.DimGray;
             btn_ExecutorsUsers.BackColor = Color.LightSteelBlue;
             btn_ExecutorsUsers.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_ExecutorsUsers.Cursor = Cursors.Hand;
             btn_ExecutorsUsers.Click += new System.EventHandler(btn_ExecutorsUsers_Click);
 
             btn_CustomerUsers.Text = "Заказчики";
@@ -152,7 +149,7 @@ namespace RequestsForRepairAndMaintenance
             btn_CustomerUsers.ForeColor = Color.DimGray;
             btn_CustomerUsers.BackColor = Color.LightSteelBlue;
             btn_CustomerUsers.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_CustomerUsers.Cursor = Cursors.Hand;
             btn_CustomerUsers.Click += new System.EventHandler(btn_CustomerUsers_Click);
 
             btn_AllUsers.Text = "Все пользователи";
@@ -160,21 +157,21 @@ namespace RequestsForRepairAndMaintenance
             btn_AllUsers.ForeColor = Color.DimGray;
             btn_AllUsers.BackColor = Color.LightSteelBlue;
             btn_AllUsers.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_AllUsers.Cursor = Cursors.Hand;
             btn_AllUsers.Click += new System.EventHandler(btn_AllUsers_Click);
 
             btn_MyRequest.Font = font_MainText;
             btn_MyRequest.ForeColor = Color.DimGray;
             btn_MyRequest.BackColor = Color.LightSteelBlue;
             btn_MyRequest.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_MyRequest.Cursor = Cursors.Hand;
             btn_MyRequest.Click += new System.EventHandler(btn_MyRequest_Click);
 
             btn_MyArchivedRequest.Font = font_MainText;
             btn_MyArchivedRequest.ForeColor = Color.DimGray;
             btn_MyArchivedRequest.BackColor = Color.LightSteelBlue;
             btn_MyArchivedRequest.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_MyArchivedRequest.Cursor = Cursors.Hand;
             btn_MyArchivedRequest.Click += new System.EventHandler(btn_MyArchivedRequest_Click);
 
             btn_EditPersonalData.Text = "Редактировать личный профиль";
@@ -182,7 +179,7 @@ namespace RequestsForRepairAndMaintenance
             btn_EditPersonalData.ForeColor = Color.DimGray;
             btn_EditPersonalData.BackColor = Color.LightSteelBlue;
             btn_EditPersonalData.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_EditPersonalData.Cursor = Cursors.Hand;
             btn_EditPersonalData.Click += new System.EventHandler(btn_EditPersonalData_Click);
 
             btn_ReportGeneration.Text = "Создать отчёт";
@@ -190,7 +187,7 @@ namespace RequestsForRepairAndMaintenance
             btn_ReportGeneration.ForeColor = Color.DimGray;
             btn_ReportGeneration.BackColor = Color.LightSteelBlue;
             btn_ReportGeneration.TextAlign = ContentAlignment.MiddleCenter;
-            btn_Back.Cursor = Cursors.Hand;
+            btn_ReportGeneration.Cursor = Cursors.Hand;
             btn_ReportGeneration.Click += new System.EventHandler(btn_ReportGeneration_Click);
 
             string queryCheckTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
@@ -230,7 +227,6 @@ namespace RequestsForRepairAndMaintenance
                     + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
             }
-
             SizeLocation_New();
             ControlsAdd();
         }
@@ -298,7 +294,9 @@ namespace RequestsForRepairAndMaintenance
 
         private void btn_EditPersonalData_Click(object sender, EventArgs e)
         {
-
+            UsersData usersData = new UsersData(mainID, "Редактировать", 0);
+            this.Close();
+            usersData.Show();
         }
 
         private void btn_ReportGeneration_Click(object sender, EventArgs e)
