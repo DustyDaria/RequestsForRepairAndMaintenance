@@ -54,7 +54,7 @@ namespace RequestsForRepairAndMaintenance
 
         Button btn_AllUsers = new System.Windows.Forms.Button();
         Button btn_CustomerUsers = new System.Windows.Forms.Button();
-        Button btn_ExecutorsUsers = new System.Windows.Forms.Button();
+        Button btn_ExecutorUsers = new System.Windows.Forms.Button();
         Button btn_RegistrationNewUser = new System.Windows.Forms.Button();
         Button btn_CreateNewRequest = new System.Windows.Forms.Button();
         Button btn_MyRequest = new System.Windows.Forms.Button();
@@ -80,6 +80,7 @@ namespace RequestsForRepairAndMaintenance
             this.MinimumSize = new Size(800, 600);
             this.ResizeRedraw = true;
             this.BackColor = Color.Azure;
+            this.Icon = Resources.logo;
 
             //ШАПКА
             groupBoxTop.Text = "Учет заявок на техническое обслуживание и ремонт (ТОиР)";
@@ -136,13 +137,13 @@ namespace RequestsForRepairAndMaintenance
             btn_RegistrationNewUser.Cursor = Cursors.Hand;
             btn_RegistrationNewUser.Click += new System.EventHandler(btn_RegistrationNewUser_Click);
 
-            btn_ExecutorsUsers.Text = "Исполнители";
-            btn_ExecutorsUsers.Font = font_MainText;
-            btn_ExecutorsUsers.ForeColor = Color.DimGray;
-            btn_ExecutorsUsers.BackColor = Color.LightSteelBlue;
-            btn_ExecutorsUsers.TextAlign = ContentAlignment.MiddleCenter;
-            btn_ExecutorsUsers.Cursor = Cursors.Hand;
-            btn_ExecutorsUsers.Click += new System.EventHandler(btn_ExecutorsUsers_Click);
+            btn_ExecutorUsers.Text = "Исполнители";
+            btn_ExecutorUsers.Font = font_MainText;
+            btn_ExecutorUsers.ForeColor = Color.DimGray;
+            btn_ExecutorUsers.BackColor = Color.LightSteelBlue;
+            btn_ExecutorUsers.TextAlign = ContentAlignment.MiddleCenter;
+            btn_ExecutorUsers.Cursor = Cursors.Hand;
+            btn_ExecutorUsers.Click += new System.EventHandler(btn_ExecutorUsers_Click);
 
             btn_CustomerUsers.Text = "Заказчики";
             btn_CustomerUsers.Font = font_MainText;
@@ -267,19 +268,25 @@ namespace RequestsForRepairAndMaintenance
             usersData.Show();
         }
 
-        private void btn_ExecutorsUsers_Click(object sender, EventArgs e)
+        private void btn_ExecutorUsers_Click(object sender, EventArgs e)
         {
-
+            UserTable userTableExe = new UserTable(mainID, "Executor");
+            this.Close();
+            userTableExe.Show();
         }
 
         private void btn_CustomerUsers_Click(object sender, EventArgs e)
         {
-
+            UserTable userTableCus = new UserTable(mainID, "Customer");
+            this.Close();
+            userTableCus.Show();
         }
 
         private void btn_AllUsers_Click(object sender, EventArgs e)
         {
-
+            UserTable userTableAll = new UserTable(mainID, "All");
+            this.Close();
+            userTableAll.Show();
         }
 
         private void btn_MyRequest_Click(object sender, EventArgs e)
@@ -362,8 +369,8 @@ namespace RequestsForRepairAndMaintenance
                 btn_CustomerUsers.Location = new System.Drawing.Point((int)LocationX(1, 24), (int)LocationY(10, 20));
                 btn_CustomerUsers.Size = new System.Drawing.Size((int)LocationX(6, 24), (int)LocationY(3, 20));
 
-                btn_ExecutorsUsers.Location = new System.Drawing.Point((int)LocationX(9, 24), (int)LocationY(10, 20));
-                btn_ExecutorsUsers.Size = new System.Drawing.Size((int)LocationX(6, 24), (int)LocationY(3, 20));
+                btn_ExecutorUsers.Location = new System.Drawing.Point((int)LocationX(9, 24), (int)LocationY(10, 20));
+                btn_ExecutorUsers.Size = new System.Drawing.Size((int)LocationX(6, 24), (int)LocationY(3, 20));
 
                 btn_RegistrationNewUser.Location = new System.Drawing.Point((int)LocationX(17, 24), (int)LocationY(10, 20));
                 btn_RegistrationNewUser.Size = new System.Drawing.Size((int)LocationX(6, 24), (int)LocationY(3, 20));
@@ -430,7 +437,7 @@ namespace RequestsForRepairAndMaintenance
                 this.Controls.Add(btn_AllUsers);
                 this.Controls.Add(btn_RegistrationNewUser);
                 this.Controls.Add(btn_CustomerUsers);
-                this.Controls.Add(btn_ExecutorsUsers);
+                this.Controls.Add(btn_ExecutorUsers);
                 this.Controls.Add(btn_EditPersonalData);
             }
             else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Заказчик")
@@ -458,11 +465,11 @@ namespace RequestsForRepairAndMaintenance
             return LocationY * partOfScreen_HEIGHT;
         }
 
-        private void Menu_Executors_Load(object sender, EventArgs e)
+        /*private void Menu_Executors_Load(object sender, EventArgs e)
         {
             Authorization authorization = new Authorization();
             authorization.Close();
-        }
+        }*/
 
         private void Menu_Executors_ResizeEnd(object sender, EventArgs e)
         {

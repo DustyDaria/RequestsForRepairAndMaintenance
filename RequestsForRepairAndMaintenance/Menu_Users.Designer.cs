@@ -39,7 +39,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Menu_Users";
             this.Text = "Menu_Executors";
-            this.Load += new System.EventHandler(this.Menu_Executors_Load);
             this.ResizeEnd += new System.EventHandler(this.Menu_Executors_ResizeEnd);
             this.SizeChanged += new System.EventHandler(this.Menu_Executors_SizeChanged);
             this.ResumeLayout(false);

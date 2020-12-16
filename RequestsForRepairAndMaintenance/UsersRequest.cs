@@ -90,6 +90,7 @@ namespace RequestsForRepairAndMaintenance
             this.ResizeRedraw = true;
             this.BackColor = Color.Azure;
             this.AutoScroll = true;
+            this.Icon = Resources.logo;
             //
 
             // ШАПКА
@@ -222,7 +223,7 @@ namespace RequestsForRepairAndMaintenance
 
             // ДАТА ОКОНЧАНИЯ
             label_date_end.Font = font_MiddleText;
-            label_date_end.Text = "Необходимая дата окончания выполнения работ (спустя неделю от даты начала выполнения работ): ";
+            label_date_end.Text = "Необходимая дата окончания выполнения работ: ";
             label_date_end.ForeColor = Color.DimGray;
             label_date_end.TextAlign = ContentAlignment.MiddleLeft;
 

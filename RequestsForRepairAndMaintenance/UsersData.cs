@@ -37,7 +37,7 @@ namespace RequestsForRepairAndMaintenance
         LinkLabel linkLabel_UserName = new System.Windows.Forms.LinkLabel();
 
         Label label_Header = new System.Windows.Forms.Label();
-        Label label_AdditionalText = new System.Windows.Forms.Label();
+        //Label label_AdditionalText = new System.Windows.Forms.Label();
         Label label_user_login = new System.Windows.Forms.Label();
         Label label_user_password = new System.Windows.Forms.Label();
         Label label_repeat_user_password = new System.Windows.Forms.Label();
@@ -79,6 +79,7 @@ namespace RequestsForRepairAndMaintenance
             this.MinimumSize = new Size(990, 720);
             this.ResizeRedraw = true;
             this.BackColor = Color.Azure;
+            this.Icon = Resources.logo;
             //this.AutoScroll = true;
             //
 
@@ -314,35 +315,30 @@ namespace RequestsForRepairAndMaintenance
                     linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
                     + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
-
-                    maskedTextBox_last_name.Enabled = true;
-                    maskedTextBox_name.Enabled = true;
-                    maskedTextBox_middle_name.Enabled = true;
-                    textBox_position.Enabled = true;
-                    maskedTextBox_phone.Enabled = true;
-                    textBox_user_login.Enabled = true;
-                    maskedTextBox_user_password.Enabled = true;
-                    maskedTextBox_repeat_user_password.Enabled = true;
-                    comboBox_type_of_account.Enabled = true;
-
                     btn_Edit.Enabled = false;
                     btn_Edit.Visible = false;
                     btn_Save.Enabled = true;
-                    btn_Cancel.Enabled = true;
                 }
                 else if (usersAction == "Редактировать")
                 {
                     string queryCheckCategoryExecutors_GET = string.Format("SELECT category_executors FROM Users WHERE id_user = '" + secondaryID + "';");
                     string queryCheckRoomNumber_GET = string.Format("SELECT roomNUMBER FROM U_RD_Rooms WHERE userID = '" + secondaryID + "';");
 
-                    GetDataToViewAndChange();
+                    if (secondaryID == 0)
+                    {
+                        GetDataToViewAndChange_Main();
+                    }
+                    else
+                    {
+                        GetDataToViewAndChange_Secondary();
+                    }
 
                     this.Text = "Редактировать данные пользователя";
                     label_Header.Text = "Редактировать данные пользователя";
                     linkLabel_UserName.Text = dataBase.GetResult(queryUserLastName_GET) + " "
                     + dataBase.GetResult(queryUserName_GET) + " " + dataBase.GetResult(queryUserMiddleName_GET);
 
-                    maskedTextBox_last_name.Enabled = true;
+                    /*maskedTextBox_last_name.Enabled = true;
                     maskedTextBox_name.Enabled = true;
                     maskedTextBox_middle_name.Enabled = true;
                     textBox_position.Enabled = true;
@@ -350,7 +346,7 @@ namespace RequestsForRepairAndMaintenance
                     textBox_user_login.Enabled = true;
                     maskedTextBox_user_password.Enabled = true;
                     maskedTextBox_repeat_user_password.Enabled = true;
-                    comboBox_type_of_account.Enabled = true;
+                    comboBox_type_of_account.Enabled = true;*/
 
                     if (dataBase.Check(queryCheckRoomNumber_GET, Convert.ToString(secondaryID)) == true)
                     {
@@ -389,7 +385,14 @@ namespace RequestsForRepairAndMaintenance
                     string queryCheckCategoryExecutors_GET = string.Format("SELECT category_executors FROM Users WHERE id_user = '" + secondaryID + "';");
                     string queryCheckRoomNumber_GET = string.Format("SELECT roomNUMBER FROM U_RD_Rooms WHERE userID = '" + secondaryID + "';");
 
-                    GetDataToViewAndChange();
+                    if (secondaryID == 0)
+                    {
+                        GetDataToViewAndChange_Main();
+                    }
+                    else
+                    {
+                        GetDataToViewAndChange_Secondary();
+                    }
 
                     this.Text = "Просмотреть данные пользователя";
                     label_Header.Text = "Просмотреть данные пользователя";
@@ -444,7 +447,14 @@ namespace RequestsForRepairAndMaintenance
             {
                 if (usersAction == "Редактировать")
                 {
-                    GetDataToViewAndChange();
+                    if (secondaryID == 0)
+                    {
+                        GetDataToViewAndChange_Main();
+                    }
+                    else
+                    {
+                        GetDataToViewAndChange_Secondary();
+                    }
 
                     this.Text = "Редактировать данные пользователя";
                     label_Header.Text = "Редактировать данные пользователя";
@@ -474,7 +484,14 @@ namespace RequestsForRepairAndMaintenance
                 }
                 else if (usersAction == "Просмотреть")
                 {
-                    GetDataToViewAndChange();
+                    if (secondaryID == 0)
+                    {
+                        GetDataToViewAndChange_Main();
+                    }
+                    else
+                    {
+                        GetDataToViewAndChange_Secondary();
+                    }
 
                     this.Text = "Просмотреть данные пользователя";
                     label_Header.Text = "Просмотреть данные пользователя";
@@ -510,7 +527,14 @@ namespace RequestsForRepairAndMaintenance
 
                 if (usersAction == "Редактировать")
                 {
-                    GetDataToViewAndChange();
+                    if (secondaryID == 0)
+                    {
+                        GetDataToViewAndChange_Main();
+                    }
+                    else
+                    {
+                        GetDataToViewAndChange_Secondary();
+                    }
 
                     this.Text = "Редактировать данные пользователя";
                     label_Header.Text = "Редактировать данные пользователя";
@@ -541,7 +565,14 @@ namespace RequestsForRepairAndMaintenance
                 }
                 else if (usersAction == "Просмотреть")
                 {
-                    GetDataToViewAndChange();
+                    if (secondaryID == 0)
+                    {
+                        GetDataToViewAndChange_Main();
+                    }
+                    else
+                    {
+                        GetDataToViewAndChange_Secondary();
+                    }
 
                     this.Text = "Просмотреть данные пользователя";
                     label_Header.Text = "Просмотреть данные пользователя";
@@ -922,27 +953,115 @@ namespace RequestsForRepairAndMaintenance
 
         private void comboBox_type_of_account_TextChanged(object sender, EventArgs e)
         {
-            if (Convert.ToString(comboBox_type_of_account.Text) == "Исполнитель")
+            string queryCheckTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
+            
+            if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Системный администратор")
             {
-                label_category_executors.Visible = true;
-                comboBox_category_executors.Visible = true;
-                comboBox_category_executors.Enabled = true;
+                if (usersAction == "Создать")
+                {
+                    if (Convert.ToString(comboBox_type_of_account.Text) == "Исполнитель")
+                    {
+                        label_category_executors.Visible = true;
+                        comboBox_category_executors.Visible = true;
+                        comboBox_category_executors.Enabled = true;
+                    }
+                    else if (Convert.ToString(comboBox_type_of_account.Text) == "Заказчик")
+                    {
+                        label_room_number.Visible = true;
+                        maskedTextBox_room_number.Visible = true;
+                        maskedTextBox_room_number.Enabled = true;
+                    }
+                    else
+                    {
+                        label_category_executors.Visible = false;
+                        label_room_number.Visible = false;
+                        comboBox_category_executors.Visible = false;
+                        comboBox_category_executors.Enabled = false;
+                        maskedTextBox_room_number.Visible = false;
+                        maskedTextBox_room_number.Enabled = false;
+                    }
+                }
+                else if (usersAction == "Просмотреть")
+                {
+                    if (Convert.ToString(comboBox_type_of_account.Text) == "Исполнитель")
+                    {
+                        label_category_executors.Visible = true;
+                        comboBox_category_executors.Visible = true;
+                        comboBox_category_executors.Enabled = false;
+                    }
+                    else if (Convert.ToString(comboBox_type_of_account.Text) == "Заказчик")
+                    {
+                        label_room_number.Visible = true;
+                        maskedTextBox_room_number.Visible = true;
+                        maskedTextBox_room_number.Enabled = false;
+                    }
+                    else
+                    {
+                        label_category_executors.Visible = false;
+                        label_room_number.Visible = false;
+                        comboBox_category_executors.Visible = false;
+                        comboBox_category_executors.Enabled = false;
+                        maskedTextBox_room_number.Visible = false;
+                        maskedTextBox_room_number.Enabled = false;
+                    }
+                }
+                else if (usersAction == "Редактировать")
+                {
+                    if (Convert.ToString(comboBox_type_of_account.Text) == "Исполнитель")
+                    {
+                        label_category_executors.Visible = true;
+                        comboBox_category_executors.Visible = true;
+                        comboBox_category_executors.Enabled = true;
+                    }
+                    else if (Convert.ToString(comboBox_type_of_account.Text) == "Заказчик")
+                    {
+                        label_room_number.Visible = true;
+                        maskedTextBox_room_number.Visible = true;
+                        maskedTextBox_room_number.Enabled = true;
+                    }
+                    else
+                    {
+                        label_category_executors.Visible = false;
+                        label_room_number.Visible = false;
+                        comboBox_category_executors.Visible = false;
+                        comboBox_category_executors.Enabled = false;
+                        maskedTextBox_room_number.Visible = false;
+                        maskedTextBox_room_number.Enabled = false;
+                    }
+                }
             }
-            else if (Convert.ToString(comboBox_type_of_account.Text) == "Заказчик")
+            else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Исполнитель")
             {
-                label_room_number.Visible = true;
-                maskedTextBox_room_number.Visible = true;
-                maskedTextBox_room_number.Enabled = true;
+                if (usersAction == "Просмотреть")
+                {
+                    label_category_executors.Visible = true;
+                    comboBox_category_executors.Visible = true;
+                    comboBox_category_executors.Enabled = false;
+                }
+                else if (usersAction == "Редактировать")
+                {
+                    label_category_executors.Visible = true;
+                    comboBox_category_executors.Visible = true;
+                    comboBox_category_executors.Enabled = false;
+                }
             }
-            else
+            else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Заказчик")
             {
-                label_category_executors.Visible = false;
-                label_room_number.Visible = false;
-                comboBox_category_executors.Visible = false;
-                comboBox_category_executors.Enabled = false;
-                maskedTextBox_room_number.Visible = false;
-                maskedTextBox_room_number.Enabled = false;
+                if (usersAction == "Просмотреть")
+                {
+                    label_room_number.Visible = true;
+                    maskedTextBox_room_number.Visible = true;
+                    maskedTextBox_room_number.Enabled = false;
+                }
+                else if (usersAction == "Редактировать")
+                {
+                    label_room_number.Visible = true;
+                    maskedTextBox_room_number.Visible = true;
+                    maskedTextBox_room_number.Enabled = false;
+                }
             }
+
+            
         }
 
         private void btn_Edit_Click(object sender, EventArgs e)
@@ -950,12 +1069,13 @@ namespace RequestsForRepairAndMaintenance
             btn_EditClick_FLAG = true;
 
             string queryCheckTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "';");
-
+            
             if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Системный администратор")
             {
                 string queryCheckCategoryExecutors_GET = string.Format("SELECT category_executors FROM Users WHERE id_user = '" + secondaryID + "';");
+                string queryCheckRoomNumber_GET = string.Format("SELECT roomNUMBER FROM U_RD_Rooms WHERE userID = '" + secondaryID + "';");
 
-                GetDataToViewAndChange();
+                GetDataToViewAndChange_Main();
 
                 label_Header.Text = "Редактировать данные пользователя";
 
@@ -966,18 +1086,35 @@ namespace RequestsForRepairAndMaintenance
                 maskedTextBox_phone.Enabled = true;
                 textBox_user_login.Enabled = true;
                 maskedTextBox_user_password.Enabled = true;
+                maskedTextBox_repeat_user_password.Visible = true;
                 maskedTextBox_repeat_user_password.Enabled = true;
+                label_type_of_account.Visible = true;
                 comboBox_type_of_account.Enabled = true;
 
                 if (dataBase.Check(queryCheckCategoryExecutors_GET, Convert.ToString(secondaryID)) == true)
                 {
+                    label_category_executors.Visible = true;
                     comboBox_category_executors.Visible = true;
                     comboBox_category_executors.Enabled = true;
                 }
                 else
                 {
+                    label_category_executors.Visible = false;
                     comboBox_category_executors.Visible = false;
                     comboBox_category_executors.Enabled = false;
+                }
+
+                if (dataBase.Check(queryCheckRoomNumber_GET, Convert.ToString(secondaryID)) == true)
+                {
+                    label_room_number.Visible = true;
+                    maskedTextBox_room_number.Visible = true;
+                    maskedTextBox_room_number.Enabled = true;
+                }
+                else
+                {
+                    label_room_number.Visible = false;
+                    maskedTextBox_room_number.Visible = false;
+                    maskedTextBox_room_number.Enabled = false;
                 }
 
                 btn_Edit.Enabled = false;
@@ -987,7 +1124,7 @@ namespace RequestsForRepairAndMaintenance
             }
             else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Заказчик")
             {
-                GetDataToViewAndChange();
+                GetDataToViewAndChange_Main();
 
                 label_Header.Text = "Редактировать данные пользователя";
 
@@ -998,8 +1135,14 @@ namespace RequestsForRepairAndMaintenance
                 maskedTextBox_phone.Enabled = true;
                 textBox_user_login.Enabled = true;
                 maskedTextBox_user_password.Enabled = true;
+                maskedTextBox_repeat_user_password.Visible = true;
                 maskedTextBox_repeat_user_password.Enabled = true;
-                comboBox_type_of_account.Enabled = true;
+                label_type_of_account.Visible = true;
+                comboBox_type_of_account.Enabled = false;
+                label_room_number.Visible = true;
+                maskedTextBox_room_number.Visible = true;
+                maskedTextBox_room_number.Enabled = true;
+                //label_type_of_account.Visible = false;
                 comboBox_category_executors.Visible = false;
                 comboBox_category_executors.Enabled = false;
 
@@ -1010,7 +1153,7 @@ namespace RequestsForRepairAndMaintenance
             }
             else if (dataBase.GetResult(queryCheckTypeOfAccount_GET) == "Исполнитель")
             {
-                GetDataToViewAndChange();
+                GetDataToViewAndChange_Main();
 
                 label_Header.Text = "Редактировать данные пользователя";
 
@@ -1021,10 +1164,13 @@ namespace RequestsForRepairAndMaintenance
                 maskedTextBox_phone.Enabled = true;
                 textBox_user_login.Enabled = true;
                 maskedTextBox_user_password.Enabled = true;
+                maskedTextBox_repeat_user_password.Visible = true;
                 maskedTextBox_repeat_user_password.Enabled = true;
-                comboBox_type_of_account.Enabled = true;
+                label_type_of_account.Visible = true;
+                comboBox_type_of_account.Enabled = false;
+                //label_type_of_account.Visible = false;
                 comboBox_category_executors.Visible = true;
-                comboBox_category_executors.Enabled = true;
+                comboBox_category_executors.Enabled = false;
 
                 btn_Edit.Enabled = false;
                 btn_Edit.Visible = false;
@@ -1033,7 +1179,7 @@ namespace RequestsForRepairAndMaintenance
             }
         }
 
-        private void GetDataToViewAndChange()
+        private void GetDataToViewAndChange_Secondary()
         {
             string queryLastName_GET = string.Format("SELECT last_name FROM Users WHERE id_user = '" + secondaryID + "';");
             string queryName_GET = string.Format("SELECT name FROM Users WHERE id_user = '" + secondaryID + "';");
@@ -1044,7 +1190,9 @@ namespace RequestsForRepairAndMaintenance
             string queryUserPassword_GET = string.Format("SELECT user_password FROM Users WHERE id_user = '" + secondaryID + "'; ");
             string queryTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + secondaryID + "'; ");
             string queryCategoryExecutors_GET = string.Format("SELECT category_executors FROM Users WHERE id_user = '" + secondaryID + "'; ");
+            string queryRoomNumber_GET = string.Format("SELECT roomNUMBER FROM U_RD_ROOMS WHERE userID = '" + secondaryID + "';");
 
+            label1.Text = "Проверка на добавление: " + queryLastName_GET;
             maskedTextBox_last_name.Text = dataBase.GetResult(queryLastName_GET);
             maskedTextBox_name.Text = dataBase.GetResult(queryName_GET);
 
@@ -1070,6 +1218,66 @@ namespace RequestsForRepairAndMaintenance
             else
             {
                 comboBox_category_executors.Text = string.Empty;
+            }
+
+            if (dataBase.Check(queryRoomNumber_GET, Convert.ToString(secondaryID)) == true)
+            {
+                maskedTextBox_room_number.Text = dataBase.GetResult(queryRoomNumber_GET);
+            }
+            else
+            {
+                maskedTextBox_room_number.Text = string.Empty;
+            }
+        }
+
+        private void GetDataToViewAndChange_Main()
+        {
+            string queryLastName_GET = string.Format("SELECT last_name FROM Users WHERE id_user = '" + mainID + "';");
+            string queryName_GET = string.Format("SELECT name FROM Users WHERE id_user = '" + mainID + "';");
+            string queryMiddleName_GET = string.Format("SELECT middle_name FROM Users WHERE id_user = '" + mainID + "';");
+            string queryPosition_GET = string.Format("SELECT position FROM Users WHERE id_user = '" + mainID + "';");
+            string queryPhone_GET = string.Format("SELECT phone FROM Users WHERE id_user = '" + mainID + "';");
+            string queryUserLogin_GET = string.Format("SELECT user_login FROM Users WHERE id_user = '" + mainID + "';");
+            string queryUserPassword_GET = string.Format("SELECT user_password FROM Users WHERE id_user = '" + mainID + "'; ");
+            string queryTypeOfAccount_GET = string.Format("SELECT type_of_account FROM Users WHERE id_user = '" + mainID + "'; ");
+            string queryCategoryExecutors_GET = string.Format("SELECT category_executors FROM Users WHERE id_user = '" + mainID + "'; ");
+            string queryRoomNumber_GET = string.Format("SELECT roomNUMBER FROM U_RD_ROOMS WHERE userID = '" + mainID + "';");
+
+            label1.Text = "Проверка на добавление: " + queryLastName_GET;
+            maskedTextBox_last_name.Text = dataBase.GetResult(queryLastName_GET);
+            maskedTextBox_name.Text = dataBase.GetResult(queryName_GET);
+
+            if (dataBase.Check(queryMiddleName_GET, Convert.ToString(secondaryID)) == true)
+            {
+                maskedTextBox_middle_name.Text = dataBase.GetResult(queryMiddleName_GET);
+            }
+            else
+            {
+                maskedTextBox_middle_name.Text = string.Empty;
+            }
+
+            textBox_position.Text = dataBase.GetResult(queryPosition_GET);
+            maskedTextBox_phone.Text = dataBase.GetResult(queryPhone_GET);
+            textBox_user_login.Text = dataBase.GetResult(queryUserLogin_GET);
+            maskedTextBox_user_password.Text = dataBase.GetResult(queryUserPassword_GET);
+            comboBox_type_of_account.Text = dataBase.GetResult(queryTypeOfAccount_GET);
+
+            if (dataBase.Check(queryCategoryExecutors_GET, Convert.ToString(mainID)) == true)
+            {
+                comboBox_category_executors.Text = dataBase.GetResult(queryCategoryExecutors_GET);
+            }
+            else
+            {
+                comboBox_category_executors.Text = string.Empty;
+            }
+
+            if (dataBase.Check(queryRoomNumber_GET, Convert.ToString(mainID)) == true)
+            {
+                maskedTextBox_room_number.Text = dataBase.GetResult(queryRoomNumber_GET);
+            }
+            else
+            {
+                maskedTextBox_room_number.Text = string.Empty;
             }
 
         }

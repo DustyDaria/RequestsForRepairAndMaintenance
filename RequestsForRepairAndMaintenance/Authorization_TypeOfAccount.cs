@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RequestsForRepairAndMaintenance.Properties;
 
 namespace RequestsForRepairAndMaintenance
 {
@@ -39,6 +40,7 @@ namespace RequestsForRepairAndMaintenance
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.Text = "Тип аккаунта";
             this.BackColor = Color.Azure;
+            this.Icon = Resources.logo;
 
             label_Ask.Text = "Под каким аккаунтом вы хотите зайти?";
             label_Ask.Font = font_MainText;
@@ -103,10 +105,10 @@ namespace RequestsForRepairAndMaintenance
                 userID = dataBase.GetID(queryUsersID_GET);
 
                 Menu_Users menu_Users = new Menu_Users(userID);
-                Authorization authorization = new Authorization();
+                //Authorization authorization = new Authorization();
 
                 this.Close();
-                authorization.Close();
+                //authorization.Close();
                 menu_Users.Show();
             }
             else
@@ -125,10 +127,10 @@ namespace RequestsForRepairAndMaintenance
                 userID = dataBase.GetID(queryUsersID_GET);
 
                 Menu_Users menu_Users = new Menu_Users(userID);
-                Authorization authorization = new Authorization();
+                //Authorization authorization = new Authorization();
 
                 this.Close();
-                authorization.Close();
+                //authorization.Close();
                 menu_Users.Show();
             }
             else
@@ -147,10 +149,10 @@ namespace RequestsForRepairAndMaintenance
                 userID = dataBase.GetID(queryUsersID_GET);
 
                 Menu_Users menu_Users = new Menu_Users(userID);
-                Authorization authorization = new Authorization();
+                //Authorization authorization = new Authorization();
 
                 this.Close();
-                authorization.Close();
+                //authorization.Close();
                 menu_Users.Show();
             }
             else
@@ -172,5 +174,11 @@ namespace RequestsForRepairAndMaintenance
             int partOfScreen_HEIGHT = Convert.ToInt32(clientScreenHeight) / partOfScreen_NUM;
             return locationY * partOfScreen_HEIGHT;
         }
+
+        /*private void Authorization_TypeOfAccount_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Authorization authorization = new Authorization();
+            //authorization.Show();
+        }*/
     }
 }

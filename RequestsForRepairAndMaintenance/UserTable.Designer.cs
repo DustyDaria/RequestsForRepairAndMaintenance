@@ -1,6 +1,6 @@
 ﻿namespace RequestsForRepairAndMaintenance
 {
-    partial class UsersData
+    partial class UserTable
     {
         /// <summary>
         /// Required designer variable.
@@ -28,37 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersData));
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            // 
-            // UsersData
+            // UserTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "UsersData";
-            this.Text = "UsersData";
-            this.ResizeEnd += new System.EventHandler(this.UsersData_ResizeEnd);
-            this.SizeChanged += new System.EventHandler(this.UsersData_SizeChanged);
+            this.Name = "UserTable";
+            this.Text = "UserTable";
+            this.ResizeEnd += new System.EventHandler(this.UserTable_ResizeEnd);
+            this.SizeChanged += new System.EventHandler(this.UserTable_SizeChanged);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
     }
 }

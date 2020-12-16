@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RequestsForRepairAndMaintenance.Properties;
 
 namespace RequestsForRepairAndMaintenance
 {
@@ -41,7 +42,8 @@ namespace RequestsForRepairAndMaintenance
             this.Text = "Авторизация";
             this.ResizeRedraw = true;
             this.BackColor = Color.Azure;
-            
+            this.Icon = Resources.logo;
+
             groupBoxTop.Text = "Учет заявок на техническое обслуживание и ремонт (ТОиР)";
             groupBoxTop.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             groupBoxTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -105,9 +107,10 @@ namespace RequestsForRepairAndMaintenance
                 if (dataBase.GetResult(queryCheckUserData_GET) == Password)
                 {
                     Authorization_TypeOfAccount authorization_TypeOfAccount = new Authorization_TypeOfAccount(Email, Password);
-                    this.Enabled = false;
+                    //this.Enabled = false;
+                    this.Hide();
                     authorization_TypeOfAccount.Show();
-                    authorization_TypeOfAccount.FormClosed += (obj, args) => this.Enabled = true;
+                    //authorization_TypeOfAccount.FormClosed += (obj, args) => this.Enabled = true;
                 }
                 else
                 {
