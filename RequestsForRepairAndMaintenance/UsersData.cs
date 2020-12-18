@@ -406,6 +406,7 @@ namespace RequestsForRepairAndMaintenance
                     maskedTextBox_phone.Enabled = false;
                     textBox_user_login.Enabled = false;
                     maskedTextBox_user_password.Enabled = false;
+                    label_repeat_user_password.Visible = false;
                     maskedTextBox_repeat_user_password.Enabled = false;
                     maskedTextBox_repeat_user_password.Visible = false;
                     comboBox_type_of_account.Enabled = false;
@@ -1192,7 +1193,7 @@ namespace RequestsForRepairAndMaintenance
             string queryCategoryExecutors_GET = string.Format("SELECT category_executors FROM Users WHERE id_user = '" + secondaryID + "'; ");
             string queryRoomNumber_GET = string.Format("SELECT roomNUMBER FROM U_RD_ROOMS WHERE userID = '" + secondaryID + "';");
 
-            label1.Text = "Проверка на добавление: " + queryLastName_GET;
+            //label1.Text = "Проверка на добавление: " + queryLastName_GET;
             maskedTextBox_last_name.Text = dataBase.GetResult(queryLastName_GET);
             maskedTextBox_name.Text = dataBase.GetResult(queryName_GET);
 
@@ -1243,18 +1244,19 @@ namespace RequestsForRepairAndMaintenance
             string queryCategoryExecutors_GET = string.Format("SELECT category_executors FROM Users WHERE id_user = '" + mainID + "'; ");
             string queryRoomNumber_GET = string.Format("SELECT roomNUMBER FROM U_RD_ROOMS WHERE userID = '" + mainID + "';");
 
-            label1.Text = "Проверка на добавление: " + queryLastName_GET;
+            //label1.Text = "Проверка на добавление: " + queryLastName_GET;
             maskedTextBox_last_name.Text = dataBase.GetResult(queryLastName_GET);
             maskedTextBox_name.Text = dataBase.GetResult(queryName_GET);
 
-            if (dataBase.Check(queryMiddleName_GET, Convert.ToString(secondaryID)) == true)
+            maskedTextBox_middle_name.Text = dataBase.GetResult(queryMiddleName_GET);
+            /*if (dataBase.Check(queryMiddleName_GET, Convert.ToString(mainID)) == true)
             {
                 maskedTextBox_middle_name.Text = dataBase.GetResult(queryMiddleName_GET);
             }
             else
             {
                 maskedTextBox_middle_name.Text = string.Empty;
-            }
+            }*/
 
             textBox_position.Text = dataBase.GetResult(queryPosition_GET);
             maskedTextBox_phone.Text = dataBase.GetResult(queryPhone_GET);

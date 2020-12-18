@@ -1,6 +1,6 @@
 ﻿namespace RequestsForRepairAndMaintenance
 {
-    partial class UsersData
+    partial class RequestTable
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersData));
-            this.SuspendLayout();
-            // 
-            // UsersData
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "UsersData";
-            this.Text = "UsersData";
-            this.ResizeEnd += new System.EventHandler(this.UsersData_ResizeEnd);
-            this.SizeChanged += new System.EventHandler(this.UsersData_SizeChanged);
-            this.ResumeLayout(false);
-
+            this.Text = "RequestTable";
         }
 
         #endregion

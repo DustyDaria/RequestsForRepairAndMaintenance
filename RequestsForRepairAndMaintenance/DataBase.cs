@@ -17,6 +17,108 @@ namespace RequestsForRepairAndMaintenance
 
         public List<string[]> data = new List<string[]>();
 
+
+        public void Select_9(string query)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        data.Add(new string[9]);
+                        data[data.Count - 1][0] = reader[0].ToString();
+                        data[data.Count - 1][1] = reader[1].ToString();
+                        data[data.Count - 1][2] = reader[2].ToString();
+                        data[data.Count - 1][3] = reader[3].ToString();
+                        data[data.Count - 1][4] = reader[4].ToString();
+                        data[data.Count - 1][5] = reader[5].ToString();
+                        data[data.Count - 1][6] = reader[6].ToString();
+                        data[data.Count - 1][7] = reader[7].ToString();
+                        data[data.Count - 1][8] = reader[8].ToString();
+
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ошибка!\n" + e.ToString());
+            }
+        }
+
+
+        public void Select_8(string query)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        data.Add(new string[8]);
+                        data[data.Count - 1][0] = reader[0].ToString();
+                        data[data.Count - 1][1] = reader[1].ToString();
+                        data[data.Count - 1][2] = reader[2].ToString();
+                        data[data.Count - 1][3] = reader[3].ToString();
+                        data[data.Count - 1][4] = reader[4].ToString();
+                        data[data.Count - 1][5] = reader[5].ToString();
+                        data[data.Count - 1][6] = reader[6].ToString();
+                        data[data.Count - 1][7] = reader[7].ToString();
+                        //data[data.Count - 1][8] = reader[8].ToString();
+
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ошибка!\n" + e.ToString());
+            }
+        }
+
+
+        public void Select_7(string query)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        data.Add(new string[7]);
+                        data[data.Count - 1][0] = reader[0].ToString();
+                        data[data.Count - 1][1] = reader[1].ToString();
+                        data[data.Count - 1][2] = reader[2].ToString();
+                        data[data.Count - 1][3] = reader[3].ToString();
+                        data[data.Count - 1][4] = reader[4].ToString();
+                        data[data.Count - 1][5] = reader[5].ToString();
+                        data[data.Count - 1][6] = reader[6].ToString();
+                        //data[data.Count - 1][7] = reader[7].ToString();
+                        //data[data.Count - 1][8] = reader[8].ToString();
+
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ошибка!\n" + e.ToString());
+            }
+        }
+
         public void Select(string query)
         {
             try
