@@ -191,21 +191,21 @@ namespace RequestsForRepairAndMaintenance
             comboBox_SearchCustomer.Font = font_MiddleText;
             comboBox_SearchCustomer.ForeColor = Color.DimGray;
             comboBox_SearchCustomer.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBox_SearchCustomer.TextChanged += new System.EventHandler(comboBox_SearchCustomer_TextChanged);
+            //comboBox_SearchCustomer.TextChanged += new System.EventHandler(comboBox_SearchCustomer_TextChanged);
             comboBox_SearchCustomer.Items.AddRange(new string[] { "ID", "Логин", "Фамилия", "Имя", "Отчество"
                 , "Должность", "Телефон", "Количество помещений", "Количество заявок" });
 
             comboBox_SearchExecutors.Font = font_MiddleText;
             comboBox_SearchExecutors.ForeColor = Color.DimGray;
             comboBox_SearchExecutors.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBox_SearchExecutors.TextChanged += new System.EventHandler(comboBox_SearchExecutors_TextChanged);
+            //comboBox_SearchExecutors.TextChanged += new System.EventHandler(comboBox_SearchExecutors_TextChanged);
             comboBox_SearchExecutors.Items.AddRange(new string[] { "ID", "Логин", "Фамилия", "Имя", "Отчество"
                 , "Должность", "Категория исполнителя", "Телефон", "Количество заявок" });
 
             comboBox_SearchAll.Font = font_MiddleText;
             comboBox_SearchAll.ForeColor = Color.DimGray;
             comboBox_SearchAll.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBox_SearchAll.TextChanged += new System.EventHandler(comboBox_SearchAll_TextChanged);
+            //comboBox_SearchAll.TextChanged += new System.EventHandler(comboBox_SearchAll_TextChanged);
             comboBox_SearchAll.Items.AddRange(new string[] { "ID", "Логин", "Фамилия", "Имя", "Отчество"
                 , "Должность", "Тип аккаунта" , "Категория исполнителя", "Телефон" });
 
@@ -768,21 +768,6 @@ namespace RequestsForRepairAndMaintenance
                 }
 
             }
-        }
-
-        private void comboBox_SearchAll_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox_SearchExecutors_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox_SearchCustomer_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void linkLabel_UserName_Click(object sender, EventArgs e)

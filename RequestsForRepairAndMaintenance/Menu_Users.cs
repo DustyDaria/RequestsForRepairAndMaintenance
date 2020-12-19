@@ -291,11 +291,16 @@ namespace RequestsForRepairAndMaintenance
 
         private void btn_MyRequest_Click(object sender, EventArgs e)
         {
-
+            RequestTable requestTable = new RequestTable(mainID, "Текущие");
+            this.Close();
+            requestTable.Show();
         }
 
         private void btn_MyArchivedRequest_Click(object sender, EventArgs e)
         {
+            RequestTable requestTable_archived = new RequestTable(mainID, "Архивные");
+            this.Close();
+            requestTable_archived.Show();
 
         }
 
